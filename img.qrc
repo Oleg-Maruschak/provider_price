@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="fon">
+    <file>Логотип 500x500New3.jpeg</file>
+  </qresource>
+  <qresource prefix="icon">
+    <file>icon.png</file>
+    <file>icon2.png</file>
+  </qresource>
+  <qresource prefix="loader">
+    <file>loading_2.gif</file>
+  </qresource>
+</RCC>
