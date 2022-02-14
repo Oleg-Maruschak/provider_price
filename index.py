@@ -1,10 +1,10 @@
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import QThread
 from funktions import *
-# Импортируем наш файл
 from programs import Ui_Window
 from login import Ui_MainWindow
 import sys
+
 
 class mywindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -24,20 +24,17 @@ class mywindow(QtWidgets.QMainWindow):
             login.close()
         else:
             self.ui.label_4.setText('Неверный логин/пароль')
+            
 
     def keyPressEvent(self, e):
         if e.key() == QtCore.Qt.Key_Enter or e.key() == QtCore.Qt.Key_Return:
             self.win()
 
 
-
 class UpdateProgressBar(QThread):
     def __init__(self, mainwindow, parent=None):
         super().__init__()
         self.mainwindow = mainwindow
-
-
-
 
 
     def run(self):
@@ -53,9 +50,6 @@ class UpdateProgressBar(QThread):
                 self.mainwindow.ui.progressBar.setValue(self.mainwindow.valueProcent)
                 self.mainwindow.valueProcent = 0
                 break
-
-
-
 
 
 class window(QtWidgets.QMainWindow):
@@ -74,6 +68,7 @@ class window(QtWidgets.QMainWindow):
         self.ui.Left.setChecked(True)
         self.ui.comboBox.activated.connect(self.sortList)
         self.ui.lineEdit.setText('compareFile')
+        
 
     def sortList(self):
         try:
@@ -87,6 +82,7 @@ class window(QtWidgets.QMainWindow):
             self.updateList()
         except Exception as err:
             self.returnErrorAll(err)
+            
 
     def returnErrorAll(self, err):
         self.ui.progressBar.setValue(0)
@@ -112,15 +108,12 @@ class window(QtWidgets.QMainWindow):
             self.returnErrorAll(err)
 
 
-
-
-
-
     def returnJoin(self):
         if self.ui.Left.isChecked():
             return 'left'
         elif self.ui.Inner.isChecked():
             return 'inner'
+        
 
     def pressObrabotka(self):
         try:
@@ -143,6 +136,7 @@ class window(QtWidgets.QMainWindow):
                     self.returnDataFrameEnd(obrab)
         except Exception as err:
             self.returnErrorAll(err)
+            
 
     def returnDataFrameEnd(self, listData):
         try:
@@ -189,10 +183,6 @@ class window(QtWidgets.QMainWindow):
             self.returnErrorAll(err)
 
 
-
-
-
-
     def open_file(self):
         try:
             self.valueProcent = 0
@@ -211,10 +201,12 @@ class window(QtWidgets.QMainWindow):
                 self.ui.comboBox.addItem(fileName)
         except Exception as err:
             self.returnErrorAll(err)
+            
 
     def getListRow(self):
         aaa = self.ui.listWidget.currentRow()
         return aaa
+    
 
     def getListItem(self):
         try:
@@ -266,12 +258,11 @@ class window(QtWidgets.QMainWindow):
                         combo.currentIndexChanged.connect(lambda: self.get(urlFile))
                     else:
                         self.ui.tableWidget.setItem(row, col, cellinfo)
-
-
                     col += 1
                 row += 1
         except Exception as err:
             self.returnErrorAll(err)
+            
 
     def get(self, url):
         try:
@@ -293,14 +284,6 @@ class window(QtWidgets.QMainWindow):
             self.ui.listWidget.takeItem(self.getListRow())
             self.ui.comboBox.clear()
             self.updateList(True)
-
-
-
-
-
-
-
-
 
 
 app = QtWidgets.QApplication([])
